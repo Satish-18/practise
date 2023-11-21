@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Resume</title>
+</head>
+<body style="font-size: 25px;
+      font-weight: 600;">
+	<h2><b>Name: </b>{{user_profile.name|safe}}</h2>
+	<h2><b>Email: </b>{{user_profile.email|safe}}</h2>
+	<h2><b>Phone: </b>{{phone|safe}}</h2>
+	<hr>
+	<p><b>Summary</b></p>
+	<p>{{user_profile.summary|safe}}</p>
+	<hr>
+	<p><b>Skills</b></p>
+	{{user_profile.skills|safe}}
+
+	<hr>
+	<p><b>Education</b></p>
+	<ul>
+		<li>Scholling: {{user_profile.school|safe}}</li>
+		<li>University: {{user_profile.degree|safe}} from {{user_profile.university|safe}}</li>
+	</ul>
+	<hr>
+	<p><b>Work Experience</b></p>
+
+	{{user_profile.previous_work|safe}}
+
+	    <p style="color: #838383; text-align: center; padding-top: 4rem;">Copyright © 2020 Satish. All rights reserved</p>
+
+</body>
+</html>

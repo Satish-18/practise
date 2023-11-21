@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,900&display=swap">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    {% load static %}
+    <link rel="stylesheet"  href="/static/css/basic.css" type="text/css">
+
+  <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <title></title>
+
+	
+    </head>
+</head>
+  <body>
+  <section id="header">
+    <div class="header containers">
+      <div class="nav-bar">
+        <div class="brand">
+          <a href="/sas" style="text-decoration: none;"><h1><span>S</span>atish <span>S</span>ubedi</h1></a>
+        </div>
+        <div class="nav-list">
+          <div class="hamburger"><div class="bar"></div></div>
+          <ul>
+            <li><a href="/sas" data-after="Home">Home</a></li>
+            <li><a href="/sas/about" data-after="About">About</a></li>
+            <li><a href="/sas/contact" data-after="Contact">Contact</a></li>
+            <li><a href="/blog" data-after="Blog">Blog</a></li>
+
+             {% if user.is_authenticated %}
+            <div class="btn-group">
+              <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+               welcome {{request.user}}
+              </button>
+              <div class="dropdown-menu" style="height: 50px; top: 40px; background-color: red;">
+               <li class="list" style="color: crimson; font-size: 5px;"> <a class="dropdown-item" href="/sas/logout" style="font-size: 10px; height: 1px; color: crimson margin-bottom :1rem;">logout</a></li>
+    
+                
+              </div>
+            </div>
+               
+            {% else %}
+            <li><a class="enter" href="/sas/login">Login</a></li>
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+   <!-- header -->
+    <header class="hero">
+      <div class="section-center hero-center">
+        <article class="hero-info">
+          <div class="underline"></div>
+          <h1>i'm Satish</h1>
+          <h4>Software Engineer & Data Enthusist</h4>
+          <a href="contact.html" class="btn hero-btn">Downlode cv</a>
+          <!-- social icons -->
+          <ul class="social-icons hero-icons">
+            <li>
+              <a href="https://www.twitter.com" class="social-icon">
+                <i class="fa fa-facebook"></i>
+              </a>
+            </li>
+            <li>
+              <a href="https://www.twitter.com" class="social-icon">
+                <i class="fa fa-linkedin"></i>
+              </a>
+            </li>
+            <li>
+              <a href="https://www.twitter.com" class="social-icon">
+                <i class="fa fa-squarespace"></i>
+              </a>
+            </li>
+            <li>
+              <a href="https://www.twitter.com" class="social-icon">
+                <i class="fa fa-behance"></i>
+              </a>
+            </li>
+            <li>
+              <a href="https://www.twitter.com" class="social-icon">
+                <i class="fa fa-instagram"></i>
+              </a>
+            </li>
+          </ul>
+        </article>
+        <article class="hero-img">
+          <img src="./images/hero-img.jpeg" class="hero-photo" alt="john doe" />
+        </article>
+      </div>
+    </header>
+
+
+<section class="portfolio">
+  <div class="container">
+    <div class="row">
+      <div class="section-title text-center">
+        <h1>recent work</h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="portfolio-gallery">
+        <div class="item">
+          <div class="inner">
+            <img src="/static/img/first.jpg" alt="portfolio" style="max-height: 208px;">
+            <div class="overlay">
+              <span class="fa">Django Ecommerce</span>
+              <h4><a href="#" style="text-decoration: none; color: crimson">view</a></h4>
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="inner">
+            <img src="/static/img/second.jpg" alt="portfolio" style="max-height: 208px;">
+            <div class="overlay">
+              <span class="fa">Wheather App</span>
+              <h4><a href="#" style="text-decoration: none; color: crimson;">view</a></h4>
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="inner">
+            <img src="/static/img/third.jpg" alt="portfolio" style="max-height: 208px;">
+            <div class="overlay">
+              <span class="fa">Inventory Management</span>
+              <h4><a href="#" style="text-decoration: none; color: crimson;">view</a></h4>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+  		<section class="services">
+  			<div class="container">
+  				<div class="row">
+  					<div class="section-title text-center">
+  						<h1>SERVICES</h1>
+  					</div>
+  				</div>
+  				<div class="row">
+  					<div class="service-content">
+  							<div class="box">
+  								<div class="icon">
+  									<i class="fa fa-code"></i>
+  								</div>
+  								<h5>Web Development</h5>
+  								<p>Frontend and Backend with technologies like Django, React</p>
+  							</div>
+  							<div class="box">
+  								<div class="icon">
+  									<i class="fa fa-tv"></i>
+  								</div>
+  								<h5>Digital Marketing</h5>
+  								<p>Search engine optimization, Social media marketing, Bloging</p>
+  							</div>
+  							<div class="box">
+  								<div class="icon">
+  									<i class="fa fa-laptop"></i>
+  								</div>
+  								<h5>Domain and Hosting</h5>
+  								<p>Provide Hosting with effective services with very low price  </p>
+  							</div>
+  					</div>
+  				</div>
+  			</div>
+  		</section>
+  		
+
+
+
+
+      
+  <section id="footer">
+    <div class="footer containers">
+      <div class="brand"><h1><span>F</span>ollow <span>M</span>e <span>O</span>n</h1></div>
+      <div class="social-icon">
+        <div class="social-item">
+           <a href="https://www.facebook.com/profile.php?id=100013567849262" target="_blank"><i class="fa fa-facebook"></i></a>
+        </div>
+        <div class="social-item">
+          <a href=""><i class="fa fa-instagram" target="_blank"></i></a>
+        </div>
+        <div class="social-item">
+          <a href="http://linkedin.com/in/satish-subedi-033466189" target="_blank"><i class="fa fa-linkedin"></i></a>
+        </div>
+        <div class="social-item">
+          <a href=""><i class="fa fa-twitter" target="_blank"></i></a>
+        </div>
+        <div class="social-item">
+          <a href=""><i class="fa fa-github" target="_blank"></i></a>
+        </div>
+      </div>
+      <p>Copyright © 2020 Satish. All rights reserved</p>
+    </div>
+  </section>
+  
+  		
+<script src="/static/js/basic.js"></script>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+  </body>
+</html>

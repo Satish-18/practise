@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,900&display=swap">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    {% load static %}
+    <link rel="stylesheet"  href="/static/css/basic.css" type="text/css">
+    
+
+  <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <title>
+      </title>
+      <style >
+    .jumbotron {
+    background-image: url(/static/img/blogs.jpg);
+    background-size: cover;
+    background-position: top center;
+    position: relative;
+    z-index: 1;
+    padding: 10rem 1rem;
+    margin-bottom: 0;
+    border-radius: .3rem;
+}
+.jumbotron h1{
+  margin-top: 3rem;
+  color: crimson;
+  font-weight: 500;
+}
+.jumbotron  p{
+  color: #ffffff;
+  font-weight: 500;
+  margin-top: 1rem;
+}
+.jumbotron .btn{
+  text-transform: uppercase;
+  display: inline-block;
+  padding: 10px 30px;
+  position: relative;
+  color: white;
+  background-color: transparent;
+  border: 2px solid crimson;
+  letter-spacing: .1rem;
+  margin-top: 20px;
+  transition: .5s ease;
+  transition-property: background-color, color;
+}
+.jumbotron .btn:hover{
+  color: white;
+  background-color: crimson;
+}
+.jpt{
+  font-size: 2px;
+}
+
+      </style>
+   
+    
+  </head>
+  <body>
+    
+
+     <!-- Header -->
+  <section id="header">
+    <div class="header containers">
+      <div class="nav-bar">
+        <div class="brand">
+          <a href="/sas" style="text-decoration: none;"><h1><span>S</span>atish <span>S</span>ubedi</h1></a>
+        </div>
+        <div class="nav-list">
+          <div class="hamburger"><div class="bar"></div></div>
+          <ul>
+            <li><a href="/sas" data-after="Home">Home</a></li>
+            <li><a href="/sas/about" data-after="About">About</a></li>
+            <li><a href="/sas/contact" data-after="Contact">Contact</a></li>
+            <li><a href="/blog" data-after="Blog">Blog</a></li>
+            {% if user.is_authenticated %}
+             <div class="btn-group">
+              <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+               welcome {{request.user}}
+              </button>
+              <div class="dropdown-menu" style="height: 50px; top: 40px; background-color: red;">
+               <li class="list" style="color: crimson; font-size: 5px;"> <a class="dropdown-item" href="/sas/logout" style="font-size: 10px; height: 1px; color: crimson margin-bottom :1rem;">logout</a></li>
+    
+                
+              </div>
+            </div>
+               
+            {% else %}
+            <li><a class="enter" href="/sas/login">Login</a></li>
+            {% endif %}
+
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End Header -->
+
+
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <section>
+  <div class="jumbotron">
+    <div class="container">
+      <h1 class="display-3">Hot Blogs & Articles</h1>
+      <p> Welcome to the Blog Section here you can find the latest articles and blogs and figure out what is happening in the world right now </p>
+      <div class="item-center">
+      <a class="btn btn-warning" href="#" role="button">Browse Blogs</a>
+     </div>
+    </div>
+  </div>
+</section>
+  
+  
+
+    <!--Start Blog-->
+  <section class="blogs">
+    <div class="container">
+      <div class="row">
+        <div class="section-title text-center">
+          <h1>Latest Blogs</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="blogs-content">
+      {% for item in myposts %}
+          <div class="box">
+            <div class="img">
+              <img src="/media/satish/images/{{item.Thumbnail}}">
+            </div>
+            <div class="info">
+              <span>{{item.timestamp}}</span> <span> by {{item.auther}}</span>
+            </div>
+            <h3>{{item.title}}</h3>
+            <p>{{item.content}}</p>
+            <a href="/blog/{{item.slug}}">Read More</a>
+          </div>
+   
+      {% endfor %}
+        </div>
+      </div>
+    </div>
+    </div>
+   <nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center" style="font-size: 20px; font-weight: 400; margin-top: 2rem; align-items: center;">
+      {% if myposts.has_previous %}
+      <li class="page-item">
+        <a class="page-link" href="?page={{ myposts.previous_page_number }}" tabindex="-1" aria-label="Previous">
+          <span aria-hidden="true">&laquo;</span>
+        </a>
+      </li>
+      {% endif %}
+      <li class="page-item"><a class="page-link" href="#">{{myposts.number}}</a></li>
+      {% if myposts.has_next %}
+      <li class="page-item">
+        <a class="page-link" href="?page={{ myposts.next_page_number }}" aria-label="Next">
+          <span aria-hidden="true">&raquo;</span>
+        </a>
+      </li>
+      {% endif %}
+    </ul>
+  </nav>
+  </section>
+  
+ <!--End Blog-->
+
+  <!-- Footer -->
+  <section id="footer">
+    <div class="footer containers">
+      <div class="brand"><h1><span>F</span>ollow <span>M</span>e <span>O</span>n</h1></div>
+      <div class="social-icon">
+        <div class="social-item">
+           <a href="https://www.facebook.com/profile.php?id=100013567849262"><i class="fa fa-facebook"></i></a>
+        </div>
+        <div class="social-item">
+          <a href=""><i class="fa fa-instagram"></i></a>
+        </div>
+        <div class="social-item">
+          <a href="http://linkedin.com/in/satish-subedi-033466189"><i class="fa fa-linkedin"></i></a>
+        </div>
+        <div class="social-item">
+          <a href=""><i class="fa fa-twitter"></i></a>
+        </div>
+        <div class="social-item">
+          <a href=""><i class="fa fa-github"></i></a>
+        </div>
+      </div>
+      <p>Copyright © 2020 Satish. All rights reserved</p>
+    </div>
+  </section>
+  <!-- End Footer -->
+<script src="/static/js/basic.js"></script>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+
+    {% block js %} {% endblock %}
+  </body>
+</html>

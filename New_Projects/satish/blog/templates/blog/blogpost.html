@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,900&display=swap">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    {% load static %}
+    <link rel="stylesheet"  href="/static/css/basic.css" type="text/css">
+
+  <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <title>SATISH</title>
+  </head>
+  <body style="background-color: #FCF6F5FF; 
+      margin: 0 0 10px;font-size: 15px;
+      font-weight: 600;
+      color: #838383">
+
+{% load humanize %}
+{% load extras %}
+<!-- Begin page content -->
+
+  <div class="container my-3">
+    <h1 class="bog-post-title">{{post.title}}</h1>
+     <p class="blog-post-meta">{{post.timestamp}} by <a href="">{{post.auther}}</a> </p>
+     <p style="font-size: 15px;
+      font-weight: 600;
+      color: #838383;">{{post.content|safe}}</p>
+  </div>
+
+  <div class="container">
+  	<h2>Comments ({{comments.count}})</h2>
+    <div class="my-2"> 
+
+      {% if user.is_authenticated %}
+
+      <form action="/blog/postcomment" method="post">{% csrf_token %}
+       <div class="form-group">
+          <label>Post Comment</label>
+          <input type="text" class="form-control" name="comment" placeholder="comment">
+       </div>
+
+        <input type="hidden" name="postSno" value="{{post.sno}}">
+         <input type="hidden" name="parentSno" value="">
+        <button type="submit" class="btn" style="background-color: crimson;">Submit</button>
+      </form>
+      
+      {% else %}
+      <p>Please login to post a comment</p>
+      {% endif %}
+
+    </div>
+
+    {% for comment in comments %}
+
+  	<div class="row my-3">
+  		<div class="col-md-1 ">
+        
+      </div>
+  		<div class="col-md-11 ">
+        <b>{{comment.user.username}}</b>  <span class="badge badge-secondary">{{comment.timestamp | naturaltime}}</span>
+        <div>{{comment.comment}}</div> 
+
+        <div class="replay mx-0">
+        
+      {% if user.is_authenticated %}
+ 
+        <button class="btn btn-sm btn" type="button" data-toggle="collapse" data-target="#replayBox{{comment.sno}}" aria-expanded="false" aria-controls="replayBox{{comment.sno}}" style="background-color: crimson;">
+          Reply
+        </button>
+      
+      <div class="collapse" id="replayBox{{comment.sno}}">
+        <div class="card card-body my-2">
+          <form action="/blog/postcomment" method="post">{% csrf_token %}
+             <div class="form-group">
+                <label>Reply Comment</label>
+                <input type="text" class="form-control" name="comment" placeholder="Replay">
+                <input type="hidden" name="parentSno" value="{{comment.sno}}">
+             </div>
+
+              <input type="hidden" name="postSno" value="{{post.sno}}">
+              <button type="submit" class="btn" style="background-color: crimson;">Submit</button>
+          </form>
+          </div>
+         </div>
+         {% else %}
+           <button class="btn btn-sm btn" type="button" data-toggle="collapse" data-target="#replayBox{{comment.sno}}" aria-expanded="false" aria-controls="replayBox{{comment.sno}}" disabled style="background-color: crimson;">
+          Login to Replay
+        </button>
+         {% endif %}
+
+         <div class="replies my-2">
+           {% for reply in replyDict|get_val:comment.sno %}
+           <div class="row my-2">
+            <div class="col-md-1 ">
+      
+            </div>
+            <div class="col-md-11">
+              
+             
+           
+            <b>{{reply.user.username}}</b>  <span class="badge badge-secondary">{{reply.timestamp | naturaltime}}</span>
+           <div>{{reply.comment}}</div> 
+
+
+            </div>
+           <br>
+            </div>
+           {% endfor %}
+         </div>
+
+        </div>
+      </div>
+  	</div>
+    {% endfor %}
+
+  </div>
+
+<script src="/static/js/basic.js"></script>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+
+    
+  </body>
+</html>

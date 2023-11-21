@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,900&display=swap">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <title></title>
+    <style>
+     body{
+      margin: 0;
+      padding: 0;
+      font-family: "Popins",sans-serif;
+    }
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
+
+
+#header a {
+  font-size: 10px;
+  text-align: center;
+  position: relative;
+  text-decoration: none;
+}
+
+#header {
+  font-weight: 400;
+  min-height: 8vh;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  text-transform: uppercase;
+  width: 100vw;
+  height: auto;
+  background-color: #0c0c17;
+  transition: .3s ease background-color;
+}
+#header .brand{
+  padding-top: .5rem;
+  text-align: center;
+}
+.brand h1 span {
+  color: crimson;
+}
+.brand h1{
+  font-size: 2rem;
+  text-transform: uppercase;
+  color: white;
+}
+
+
+    /*Login Form*/
+     .login-form{
+      padding: 100px 15px;
+      background-color: #f5f8fd;
+    }
+    .container{
+
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0px 0px 10px 0px;
+      max-width: 350px;
+    }
+     .login-form .row h2{
+      font-size: 26px;
+      font-weight: 600;
+      color: #000000;
+      margin: 0;
+      padding: 0;
+    }
+    .login-form .row p{
+      font-size: 15px;
+      font-weight: 400;
+      line-height: 24px;
+      color: #838383;
+      margin: 0px;
+    }
+     .login-form .row .form-control{
+      height: 45px;
+      width : 100%;
+      margin-bottom: 15px;
+      border:1px solid #ced4da;
+      padding: 6px 12px;
+      font-size: 14px;
+      font-weight: 400;
+      font-family: 'Popins',sans-serif;
+    }
+    .login-form .row textarea.form-control{
+      height: 140px;
+    }
+    .login-form .row .form-control::placeholder{
+      color: #838383;
+    }
+    
+    .login-form .row .submit{
+      border-radius: 4px;
+      color: #ffffff;
+      border: 1px solid #ffffff;
+      padding: 12px 20px  5px;
+      text-decoration: none;
+      font-size: 20px;
+      text-transform: uppercase;
+      font-weight: 600;
+      transition: all .5s ease;
+      background-color: #febd01;
+      box-shadow: 0px 0px 15px #e8e8e8;
+     }
+    .login-form .row .submit:hover{
+      background-color: #000000;
+      color: #ffffff;
+    }
+
+    </style>
+
+  </head>
+  <body>
+
+    <!--Start Login-->
+ <!-- Header -->
+  <section id="header">
+    <div class="brand">
+          <a href="/sas"><h1><span>S</span>atish <span>S</span>ubedi</h1></a>
+    </div>
+  </section>
+<!--Start Login-->
+
+<!--Start Form-->
+<form class="login-form" action="{% url 'Login' %}" method="post">{% csrf_token %}
+  <div class="container">
+    {% if error %}
+    <p style="color: red;, font-size: 8px;">{{error}}</p>
+    {% endif %}
+    <div class="row justify-content-center">
+      <h2>Login to Account</h2>
+      <p> Enter your login data</p>
+      <input type="text" id="loginusername" name="loginusername" class="form-control my-2" placeholder="Email or Username*" required>
+      <input type="password" id="loginpassword" name="loginpassword" class="form-control my-2" placeholder="password*" required>
+      <button class="submit my-2" type="submit">Login Account</button>
+      <P>Don't have account?<a href="/sas/register">Create Account</a></P>
+    </div>
+  </div>
+</form>
+<!--Start Form-->
+
+
+      <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+   
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+  </body>
+</html>
